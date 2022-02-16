@@ -94,6 +94,7 @@ hs_err_pid*
 
 ### Maven ###
 target/
+pom.properties
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -137,5 +138,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+## DB ##
+database.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,maven,java
