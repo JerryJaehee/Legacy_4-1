@@ -7,21 +7,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<c:import url="./template/header_css.jsp"></c:import>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
 </head>
 <body>
 	<c:import url="./template/header.jsp"></c:import>
 
 	<h1>Index Page</h1>
-	
+
 	<h3>${member.name} 님 환영합니다 
-		<span class="material-icons">login</span>
+	<span class="material-icons-outlined">
+		account_circle
+	</span> 
+
 	</h3>
+	
 	
 	<div>
 		<c:if test="${not empty member}">
-			<a href="./member/mypage">MyPage</a>
+			<a class="my" href="./member/mypage">MyPage</a>
 			<a href="./member/logout">Logout</a>
 		</c:if>
 		
