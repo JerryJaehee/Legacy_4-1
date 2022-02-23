@@ -14,6 +14,11 @@ public class BankBookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
 	
+	//Update
+	public int update(BankBookDTO bankBookDTO)throws Exception{
+		return bankBookDAO.update(bankBookDTO);
+	}
+	
 	//메서드는 DAO의 메서드와 거의 동일
 	//delete
 	public int delete (BankBookDTO bankBookDTO)throws Exception{
