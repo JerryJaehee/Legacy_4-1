@@ -43,7 +43,7 @@ public class Pager {
 		
 		//4. 전체 Block의 갯수 구하기
 		Long totalBlock=totalPage/perBlock;
-		if(totalPage%totalBlock != 0) {
+		if(totalPage%perBlock != 0) {
 			totalBlock++;
 		}
 		
