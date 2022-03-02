@@ -1,0 +1,32 @@
+
+.table-container {
+    width: 70%;
+
+    margin: 0 auto;
+}
+
+.title {
+    margin-top: 50px;
+}
+
+
+.search-form {
+    margin-top: 50px;
+}
+
+.search-form fieldset {
+    border: 0;
+}
+
+.table-container > .table-basic{
+    margin-top: 10px;
+}
+
+.search-form select, .search-form option, .search-form input, .search-form button {
+    height: 24px;
+    vertical-align: middle;
+   border: 1px solid black;
+   font-size: 14px;
+}
+
+
