@@ -61,9 +61,27 @@ public class BankBookController {
 	
 	//detail
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public void detail(BankBookDTO bankBookDTO, Model model)throws Exception{
+	public String detail(BankBookDTO bankBookDTO, Model model)throws Exception{
 		bankBookDTO = bankBookService.detail(bankBookDTO);
-		model.addAttribute("dto", bankBookDTO);
+		
+		//조회가 성공하면 출력 
+		//조회가 실패하면 alert으로 없는 번호 입니다.
+		//다시 list로 이동
+		//common/result.jsp활용
+		
+		String view="common/result";
+		
+		if(bankBookDTO != null) {
+			view = "bankbook/detail";
+			model.addAttribute("dto", bankBookDTO);
+		}else {
+			model.addAttribute("message", "없는 번호 입니다");
+			model.addAttribute("path", "./list");
+		}
+		
+		return view;
+		
+		
 	}
 	
 	//list
