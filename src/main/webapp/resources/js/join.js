@@ -8,38 +8,94 @@ const pwResult2 = document.getElementById("pwResult2");
 const idx = document.getElementById("idx");
 const idResult = document.getElementById("idResult");
 
+const name = document.getElementById("name");
+const phone = document.getElementById("phone");
+const email = document.getElementById("email");
+
 const frm = document.getElementById("frm");
 const btn = document.getElementById("btn");
 
-let idCheck=false;
+let idCheck=false; //check OK :  True, check X: False
 let pwCheck=false;
+let nameCheck=false;
+let phoneCheck=false;
+let emailCheck=false;
+
+pw.addEventListener("change", function(){
+    pwCheck=false;
+    pw2.value='';
+    pwResult2.innerHTML='';
+    pw2.focus();
+});
+
+
+email.addEventListener('blur', function(){
+    if(email.value==''){
+        nameCheck=false;
+    }else {
+        emailCheck=true;
+    }
+});
+
+phone.addEventListener('blur', function(){
+    if(phone.value==''){
+        phoneCheck=false;
+    }else {
+        phoneCheck=true;
+    }
+});
+
+name.addEventListener('blur', function(){
+    if(name.value==''){
+        nameCheck=false;
+    }else {
+        nameCheck=true;
+    }
+});
+
 
 btn.addEventListener("click", function(){
+    console.log(idCheck);
+    console.log(pwCheck);
+    console.log(nameCheck);
+    console.log(phoneCheck);
+    console.log(emailCheck);
+
     
-    frm.submit();
+    
+    if(idCheck && pwCheck && nameCheck && phoneCheck && emailCheck){
+        frm.submit();
+    }else {
+        alert('필수요건을 확인 하세요');
+    }
+
 });
 
 
 idx.addEventListener("blur", function(){
-    idCheck=false;
+    
     let v = idx.value;
     
     if(v==''){ //v.length == 0
         idResult.innerHTML = '필수 입력'
+        idCheck=false;
+    }else {
         idCheck=true;
     }
 });
 
 
 pw2.addEventListener("blur", function(){
-    pwCheck=true;
+    
     let v1 = pw.value;
     let v2 = pw2.value;
     let message = "비번이 일치 하지 않음"
     
     if(v1 == v2){
         message = "비번이 일치 함"
-        pwCheck= false;
+        pwCheck= true;
+    }else {
+        pwCheck = false;
     }
 
     pwResult2.innerHTML=message;
