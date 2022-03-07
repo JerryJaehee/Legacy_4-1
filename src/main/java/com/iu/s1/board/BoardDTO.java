@@ -1,16 +1,14 @@
-package com.iu.s1.notice;
+package com.iu.s1.board;
 
 import java.sql.Date;
 
-public class NoticeDTO {
-	
+public class BoardDTO {
 	private Long num;
 	private String title;
 	private String writer;
 	private String contents;
 	private Date regDate;
 	private Long hit;
-	
 	
 	public Long getNum() {
 		return num;
