@@ -7,10 +7,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<c:import url="./template/header_css.jsp"></c:import>
-
+	<style type="text/css">
+		.hea {
+			width:  80%;
+			height: 200px;
+			margin: 70px auto;
+			clear: both;
+			overflow: hidden;
+		}
+		
+		.hea img {
+			width: 100%;
+			height: 100%;
+			
+		}
+	</style>
 </head>
 <body>
 	<c:import url="./template/header.jsp"></c:import>
+
+	<div class="hea">
+		<img alt="" src="./resources/images/back.jpg">
+	</div>
 
 	<h1>Index Page</h1>
 
