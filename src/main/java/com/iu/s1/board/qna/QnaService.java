@@ -46,5 +46,38 @@ public class QnaService implements BoardService {
 		// TODO Auto-generated method stub
 		return qnaDAO.delete(boardDTO);
 	}
+	
+	public int reply(QnaDTO qnaDTO) throws Exception{
+		// QnaDTO.num		: 부모글의 번호
+		// QnaDTO.title		: 폼에서 입력한 제목
+		// QnaDTO.writer	: 폼에서 입력한 작성자
+		// QnaDTO.contents	: 폼에서 입력한 내용
+		// QnaDTO.regDate	: null
+		// QnaDTO.hit		: null
+		// QnaDTO.ref		: null
+		// QnaDTO.step		: null
+		// QnaDTO.depth		: null
+		//1. 부모글 조회(ref, step, depth)
+		BoardDTO boardDTO = qnaDAO.detail(qnaDTO);
+		QnaDTO parent = (QnaDTO)boardDTO;
+		
+		//2. 답글의 ref는 부모의 ref값
+		qnaDTO.setRef(parent.getRef());
+		
+		//3. 답글의 step은 부모의 step+1
+		qnaDTO.setStep(parent.getStep()+1);
+		
+		//4. 답글의 depth는 부모의 depth+1
+		qnaDTO.setDepth(parent.getDepth()+1);
+		
+		//5. step update
+		int result = qnaDAO.stepUpdate(parent);
+		
+		//6. 답글 insert
+		result = qnaDAO.reply(qnaDTO);
+
+		
+		return result;
+	}
 
 }
