@@ -4,6 +4,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
  <mapper namespace="com.iu.s1.board.qna.QnaDAO">
+  	<insert id="addFile" parameterType="BoardFileDTO">
+ 		INSERT INTO QNAEFILE (FILENUM, NUM, FILENAME, ORINAME)
+ 		VALUES (FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+ 	</insert>
  
  	<insert id="reply" parameterType="QnaDTO">
  		insert into qna (num, writer, title, contents, regDate, hit, ref, step, depth)
@@ -20,9 +24,32 @@
  		values (qna_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0, qna_seq.currval, 0, 0)
  	</insert>
  
- 	<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">
- 		select * from qna where num=#{num}
+ 	<select id="detail" parameterType="QnaDTO" resultMap="detailResult">
+ 		SELECT N.*, NF.*
+		FROM
+	        QNA N
+	            LEFT OUTER JOIN
+	        QNAFILE NF
+	        	ON N.NUM=NF.NUM
+		WHERE   N.NUM=#{num} 
  	</select>
+ 	
+ 	<resultMap type="QnaDTO" id="detailResult">
+ 		<id column="num" property="num"/>
+ 		<result column="title" property="title"/>
+ 		<result column="writer" property="writer"/>
+ 		<result column="contents" property="contents"/>
+ 		<result column="regDate" property="regDate"/>
+ 		<result column="hit" property="hit"/>
+ 		<result column="ref" property="ref"/>
+ 		<result column="step" property="step"/>
+ 		<result column="depth" property="depth"/>
+ 		<collection property="fileDTOs" javaType="List" ofType="NoticeFileDTO">
+ 			<id column="fileNum" property="fileNum"/>
+ 			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName"/>
+ 		</collection>
+ 	</resultMap>
  
  	<select id="list" parameterType="Pager" resultType="QnaDTO">
  		SELECT * FROM

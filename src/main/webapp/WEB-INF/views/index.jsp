@@ -53,5 +53,7 @@
 	
 	</div>
 	
+	<img alt="" src="./resources/upload/member/a53ff63b-667b-4163-a239-8dff3dfe91b6_iu1.jpg">
+	
 </body>
 </html>
