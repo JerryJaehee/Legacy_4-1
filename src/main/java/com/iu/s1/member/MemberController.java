@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -22,6 +23,26 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "member";
+	}
+	
+	//filedown
+	@RequestMapping(value="photoDown", method=RequestMethod.GET)
+	public ModelAndView fileDown(MemberFileDTO memberFileDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("fileDown");
+		
+		
+		
+		memberFileDTO = memberService.detailFile(memberFileDTO);
+		
+		mv.addObject("file", memberFileDTO);
+		
+		return mv;
+	}
+	
 	//mypage
 	@RequestMapping(value = "mypage", method=RequestMethod.GET)
 	public ModelAndView mypage(HttpSession session)throws Exception{
@@ -30,6 +51,7 @@ public class MemberController {
 		memberDTO = memberService.mypage(memberDTO);
 		mv.setViewName("member/mypage");
 		mv.addObject("dto", memberDTO);
+		
 		return mv;
 	}
 	
@@ -37,6 +59,7 @@ public class MemberController {
 	@RequestMapping(value = "logout", method=RequestMethod.GET)
 	public String logout(HttpSession session)throws Exception{
 		session.invalidate();
+		
 		return "redirect:../";
 	}
 	
@@ -58,7 +81,6 @@ public class MemberController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		
 		memberDTO = memberService.login(memberDTO);
 		
 //		String path="redirect:./login";

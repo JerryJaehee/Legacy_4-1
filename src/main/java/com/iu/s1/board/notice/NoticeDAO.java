@@ -18,7 +18,9 @@ public class NoticeDAO implements BoardDAO {
 	private final String NAMESPACE="com.iu.s1.board.notice.NoticeDAO.";
 	
 	
-	
+	public NoticeFileDTO detailFile(NoticeFileDTO noticeFileDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailFile", noticeFileDTO);
+	}
 	
 	@Override
 	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
