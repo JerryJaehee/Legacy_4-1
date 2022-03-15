@@ -34,27 +34,34 @@
 		
 		
 			<table class="table-basic">
+			<thead>
 				<tr>
-					<td>Num</td><td>Title</td><td>Writer</td><td>Date</td><td>Hit</td>
+					<th>글번호</th>
+					<th>글제목</th>
+					<th>작성자</th>
+					<th>작성일자</th>
+					<th>조회수</th>
 				</tr>
-				<c:forEach items="${list}" var="dto">
-				<tr>
-					<td>${dto.num}</td>
-					<td>
-						<a href="./detail?num=${dto.num}">
-							<c:catch var="message">
-								<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
+			</thead>
+			<tbody>
+				<c:forEach items="${requestScope.list}" var="dto">
+					<tr>
+						<td>${dto.num}</td>
+						<td><a href="./detail?num=${dto.num}">
+							<c:catch>
+								<c:forEach begin="1" end="${dto.depth}">↳&nbsp;</c:forEach>
 							</c:catch>
 							${dto.title}
-						</a>
-					</td>
-					<td>${dto.writer}</td>
-					<td>${dto.regDate}</td>
-					<td>${dto.hit}</td>
-				</tr>
-				
-				</c:forEach>	
-			</table>
+							</a>
+						</td>				
+						<td>${dto.writer}</td>
+						<td>${dto.regDate}</td>
+						<td>${dto.hit}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
 		<div>
 			<c:if test="${pager.pre}">
 				<a href="./list?page=${pager.startNum-1}">PREVIEW</a>

@@ -26,9 +26,6 @@
 <body>
 	<c:import url="./template/header.jsp"></c:import>
 
-	<div class="hea">
-		<img alt="" src="./resources/images/back.jpg">
-	</div>
 
 	<h1>Index Page</h1>
 
@@ -53,7 +50,7 @@
 	
 	</div>
 	
-	<img alt="" src="./resources/upload/member/a53ff63b-667b-4163-a239-8dff3dfe91b6_iu1.jpg">
+	<img alt="" src="./resources/upload/notice/ea238b70-982e-4ede-aa3a-272303936a34_IMG_9169.jpg">
 	
 </body>
 </html>
